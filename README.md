@@ -15,7 +15,7 @@ It may exist in:
 - scripts that only one person fully understands
 - chat history that explains *why* something was done
 
-Humans can often reconstruct this with effort. AI systems can sometimes reconstruct it too. But both do better when the important intermediate products are made explicit.
+Humans can often reconstruct this with effort. AI systems can sometimes reconstruct it too. But both do better when important intermediate products are made explicit.
 
 ## The core idea
 
@@ -31,6 +31,21 @@ An artifact might be:
 - a compact representation of system structure
 
 The point is not just to save outputs. The point is to make project structure more explicit and more usable.
+
+## Minimal vocabulary
+
+This repo introduces a small, practical vocabulary for describing artifacts and how they relate.
+
+- **Operational artifacts** are things the system uses or produces directly.
+- **Descriptive artifacts** are structured descriptions of artifacts, interfaces, or dependencies.
+- **Decision artifacts** record important design choices and rationale.
+
+A few simple relationships go a long way:
+
+- `depends_on` — what an artifact is derived from
+- `produced_by` — what process, script, or transformation creates it
+
+This is enough to express useful structure without introducing a heavy framework.
 
 ## A tiny example
 
