@@ -111,6 +111,8 @@ As AI systems become more autonomous, good behavior depends not only on model ca
 
 When those structures are explicit, autonomous behavior becomes easier to constrain, inspect, interrupt, and review.
 
+See also: [Artifact-Driven Development for Semi-Autonomous Agents](docs/semi_autonomous_agents.md)
+
 ## What this repo is for
 
 This repo is a place to explore artifact-driven development as a practical pattern for software, analytics, and AI-assisted work.
@@ -132,9 +134,10 @@ A suggested reading order:
 
 1. this README
 2. the introduction document
-3. the smallest concrete examples in the repo
-4. notes on artifact types and relationships
-5. longer essays or experiments, if present
+3. See also: [Artifact-Driven Development for Semi-Autonomous Agents](docs/semi_autonomous_agents.md)
+4. the smallest concrete examples in the repo
+5. notes on artifact types and relationships
+6. longer essays or experiments, to come
 
 
 ## A simple claim
