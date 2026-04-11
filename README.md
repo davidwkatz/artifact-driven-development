@@ -1,57 +1,29 @@
 # Artifact-Driven Development
 
-*A practical introduction and guide to this repository.*
+*A practical pattern for making project structure more explicit for humans and AI.*
 
-AI-assisted software development is getting stronger, but too much project structure still remains implicit in code, scripts, notes, conventions, and chat history. Artifact-driven development is a practical pattern for making important intermediate products explicit, named, inspectable, and reusable. This gives both humans and AI systems a clearer handle on project structure, continuity, and change.
+Artifact-driven development is a practical pattern for making important intermediate products explicit, named, inspectable, and reusable.
 
-This repository explores that idea through simple examples, vocabulary, and working notes.
+Software and analytical projects contain more than source code. They also contain intermediate products, workflow state, dependencies, design decisions, and operational constraints. Much of this structure is often left implicit in code, scripts, conventions, and chat history.
 
-## The problem
+This repository explores a simple response:
 
-In many projects, important structure is real but mostly implicit.
+treat important project structure as explicit artifacts.
 
-It may exist in:
+## Repo status
 
-- derived tables and views
-- workflow stages
-- dependency relationships
-- design decisions
-- intermediate outputs
-- scripts that only one person fully understands
-- chat history that explains *why* something was done
+This is an early concept-and-examples repository.  
+The emphasis is on clear ideas, small examples, and practical vocabulary rather than a heavy framework.
 
-Humans can often reconstruct this with effort. AI systems can sometimes reconstruct it too. But both do better when important intermediate products are made explicit.
+## Why this matters
 
-## The core idea
+Humans can often reconstruct missing project structure from memory, habit, and scattered notes.
 
-Treat important intermediate products as first-class artifacts.
+AI systems can sometimes reconstruct it too.
 
-An artifact might be:
+But both do better when important intermediate products are made explicit.
 
-- a derived table
-- a semantic view
-- a cleaned dataset
-- a feature summary
-- a dependency map
-- a workflow state
-- a compact representation of system structure
-
-The point is not just to save outputs. The point is to make project structure more explicit and more usable.
-
-## Minimal vocabulary
-
-This repo uses a small, practical vocabulary for describing artifacts and how they relate.
-
-- **Operational artifacts** are things the system uses or produces directly.
-- **Descriptive artifacts** are structured descriptions of artifacts, interfaces, or dependencies.
-- **Decision artifacts** record important design choices and rationale.
-
-A few simple relationships go a long way:
-
-- `depends_on` — what an artifact is derived from
-- `produced_by` — what process, script, or transformation creates it
-
-This is enough to express useful structure without introducing a heavy framework.
+That helps make a project easier to inspect, reuse, revise, and govern.
 
 ## A tiny example
 
@@ -62,83 +34,27 @@ Suppose a project starts with raw observational data.
       -> feature.entity_feature_timespan
       -> summary.feature_counts
 
-Even this small chain is already useful. It makes intermediate structure visible instead of burying it in code.
-
 Now add one decision artifact:
 
     decision.cleaning_before_feature_extraction
 
-That decision might record that duplicate cleaning happens before feature extraction, and why. Without an explicit artifact, that choice may exist only in code, comments, or chat history. With it, the structure of the system becomes easier to inspect and explain.
+That decision might record that duplicate cleaning happens before feature extraction, and why.
 
-## Why this helps with AI-assisted development
+Without an explicit artifact, that choice may exist only in code, comments, or chat history.  
+With it, the structure of the system becomes easier to inspect and explain.
 
-AI systems work better when a project exposes stable intermediate structure.
+## What is in this repo
 
-Without explicit artifacts, important context is often scattered across files, scripts, prompts, naming conventions, and conversation. With explicit artifacts, more of that context becomes available in reusable form.
+- [Introduction](docs/introduction.md)
+- [A small concrete example](docs/examples/simple_artifact_example.md)
+- [Artifact-Driven Development for Semi-Autonomous Agents](docs/semi_autonomous_agents.md)
 
-That helps both humans and AI systems:
-
-- understand what exists
-- trace how outputs are formed
-- reuse stable intermediate products
-- compare alternative designs
-- make smaller, better-scoped changes
-
-In larger systems, this also helps an AI focus on a few relevant artifacts instead of reconstructing everything from a mass of loosely connected files and history.
-
-## Beyond documentation
-
-Artifact-driven development is not just “write better docs.”
-
-It broadens the effective system boundary. More of the structure that matters to the project becomes part of the working system rather than remaining outside it as hidden convention.
-
-That can include:
-
-- intermediate data products
-- semantic views
-- dependency relationships
-- workflow state
-- design decisions
-- operational constraints
-
-This matters because explicit structure is easier to inspect, revise, test, and reuse than implicit structure.
-
-## Why this may matter for autonomous agents
-
-This idea also matters for governance.
-
-As AI systems become more autonomous, good behavior depends not only on model capability but also on system structure. Goals, budgets, tasks, approvals, permissions, and audit trails should not live only in prompts or operator intuition. They can also be treated as artifacts inside the system.
-
-When those structures are explicit, autonomous behavior becomes easier to constrain, inspect, interrupt, and review.
-
-See also: [Artifact-Driven Development for Semi-Autonomous Agents](docs/semi_autonomous_agents.md)
-
-## What this repo is for
-
-This repo is a place to explore artifact-driven development as a practical pattern for software, analytics, and AI-assisted work.
-
-The emphasis is on simple, concrete examples rather than heavy formalism.
-
-Topics may include:
-
-- operational, descriptive, and decision artifacts
-- lightweight dependency structure
-- semantic views and derived products
-- design decisions as first-class objects
-- project organization for human and AI collaboration
-- implications for autonomous agents and governance
-
-## Where to start
-
-A suggested reading order:
+## Suggested reading order
 
 1. this README
-2. the introduction document
-3. See also: [Artifact-Driven Development for Semi-Autonomous Agents](docs/semi_autonomous_agents.md)
-4. the smallest concrete examples in the repo
-5. notes on artifact types and relationships
-6. longer essays or experiments, to come
-
+2. [Introduction](docs/introduction.md)
+3. [A small concrete example](docs/examples/simple_artifact_example.md)
+4. [Artifact-Driven Development for Semi-Autonomous Agents](docs/semi_autonomous_agents.md)
 
 ## A simple claim
 
@@ -148,4 +64,4 @@ It starts with a smaller and more practical move:
 
 make important project structure explicit.
 
-Artifact-driven development matters for autonomous agents because alignment is not just a property of the model. It is also a property of the surrounding system. When goals, limits, approvals, and decision trails are made explicit as artifacts, autonomous behavior becomes more governable.
+That helps humans work with more clarity, and it gives AI systems a better chance of being useful, reliable, and governable.
