@@ -1,4 +1,4 @@
-# A Small Concrete Example
+# A Small Illustrative Example
 
 This is a minimal example of artifact-driven development.
 
