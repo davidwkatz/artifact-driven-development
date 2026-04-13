@@ -2,7 +2,7 @@
 
 *A practical pattern for making project structure more explicit for humans and AI.*
 
-Artifact-driven development is a practical pattern for making important intermediate products explicit, named, inspectable, and reusable.
+Artifact-driven development is a practical pattern for making important parts of a project explicit, named, inspectable, and reusable.
 
 Software and analytical projects contain more than source code. They also contain intermediate products, workflow state, dependencies, design decisions, and operational constraints. Much of this structure is often left implicit in code, scripts, conventions, and chat history.
 
@@ -21,7 +21,7 @@ Humans can often reconstruct missing project structure from memory, habit, and s
 
 AI systems can sometimes reconstruct it too.
 
-But both do better when important intermediate products are made explicit.
+But both do better when important project structure is made explicit.
 
 That helps make a project easier to inspect, reuse, revise, and govern.
 
@@ -38,7 +38,10 @@ Now add one decision artifact:
 
     decision.cleaning_before_feature_extraction
 
+
 That decision might record that duplicate cleaning happens before feature extraction, and why.
+
+Here `decision.cleaning_before_feature_extraction` is a conceptual artifact name, not code. In a real project it might be a small document or structured record that captures the decision, its rationale, and its downstream effects. I could be added as an entry in artifacts/decisions/.
 
 Without an explicit artifact, that choice may exist only in code, comments, or chat history.  
 With it, the structure of the system becomes easier to inspect and explain.
