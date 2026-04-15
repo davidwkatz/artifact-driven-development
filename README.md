@@ -25,6 +25,14 @@ But both do better when important project structure is made explicit.
 
 That helps make a project easier to inspect, reuse, revise, and govern.
 
+## Connection to context engineering
+
+Artifact-driven development is closely related to context engineering. Context engineering focuses on giving an AI system the right instructions, facts, tools, and state at the right time. Artifact-driven development complements this by making important project structure explicit in the first place: intermediate products, dependencies, decisions, workflow state, and constraints. In that sense, artifact-driven development can provide a practical substrate for context engineering.
+
+Context engineering focuses on giving an AI system the right instructions, facts, tools, and state at the right time. Artifact-driven development complements this by making important project structure explicit in the first place: intermediate products, dependencies, decisions, workflow state, and constraints. In that sense, artifact-driven development can provide a practical substrate for context engineering.
+
+
+
 ## A tiny example
 
 Suppose a project starts with raw observational data.
