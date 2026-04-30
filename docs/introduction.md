@@ -128,10 +128,12 @@ Start with the simplest examples and concepts first.
 
 Suggested reading order:
 
-1. this README
-2. a small concrete example
-3. notes on artifact types and dependencies
-4. longer essays or experiments in the repo
+1. this introduction
+2. `examples/simple_pipeline/README.md` for a concrete, inspectable data example
+3. `examples/simple_artifact_example.md` for the conceptual version of the same idea
+4. `examples/simple_pipeline/artifacts.yaml` for an explicit artifact catalog showing artifact names, types, purposes, and dependencies
+5. longer essays or experiments in the repo
+
 
 ## A simple claim
 

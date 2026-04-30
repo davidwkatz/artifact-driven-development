@@ -8,15 +8,19 @@ The goal is not complexity, but clarity.
 
 ## Overview
 
-The pipeline consists of a sequence of transformations:
+The pipeline consists of a small dependency graph:
 
-* `raw_events`
-* `deduplicated_events`
-* `normalized_events`
-* `feature_table`
-* `summary_table`
+```text
+raw_events
+  -> deduplicated_events
+    -> normalized_events
+      -> feature_table
+      -> summary_table
+```
 
-Each step produces a new artifact derived from previous ones.
+Each step produces a named artifact derived from previous ones. The last two
+artifacts both depend on `normalized_events`: `feature_table` summarizes by
+entity, while `summary_table` summarizes by event type.
 
 The dependencies between these artifacts are defined in:
 
@@ -40,7 +44,7 @@ Applies normalization to fields or values.
 
 ### feature_table
 
-Derives features from normalized data.
+Derives per-entity features from normalized data.
 
 ### summary_table
 
@@ -51,7 +55,7 @@ Produces a summary grouped by `event_type`.
 ## Files
 
 * `artifacts.yaml` describes the artifacts and their dependencies.
-* `pipeline.sql` shows one simple way to derive the artifacts from the CSV files.
+* `pipeline.sql` loads the materialized CSV artifacts into DuckDB views for inspection.
 * The CSV files are small example artifacts that can be inspected directly.
 
 ---
@@ -67,13 +71,23 @@ duckdb :memory: < pipeline.sql
 
 The SQL uses relative paths, so it must be run from this directory.
 
+Expected row counts:
+
+| artifact | n_rows |
+| --- | ---: |
+| `raw_events` | 8 |
+| `deduplicated_events` | 6 |
+| `normalized_events` | 6 |
+| `feature_table` | 3 |
+| `summary_table` | 3 |
+
 ---
 
 ## How to read this example
 
 1. Inspect the CSV files to understand the data at each step.
 2. Review `artifacts.yaml` to see how artifacts depend on each other.
-3. Read `pipeline.sql` to see one possible implementation of those transformations.
+3. Read `pipeline.sql` to see how the materialized artifacts can be loaded and checked.
 
 ---
 
@@ -86,5 +100,3 @@ This example demonstrates:
 * how documentation and data can align
 
 This is the core idea behind artifact-driven development.
-
-
