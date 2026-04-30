@@ -1,39 +1,90 @@
 # Simple Pipeline Example
 
-This example makes a small artifact pipeline concrete.
+This example shows how a small workflow can be represented using explicit artifacts.
 
-Pipeline:
+The goal is not complexity, but clarity.
 
-- `raw_events.csv`
-- `deduplicated_events.csv`
-- `normalized_events.csv`
-- `feature_table.csv`
-- `summary_table.csv`
+---
 
-The example is intentionally tiny. Its purpose is not to model a production workflow, but to show how a sequence of explicit artifacts can make intermediate structure visible and reusable.
+## Overview
 
-## Artifact roles
+The pipeline consists of a sequence of transformations:
 
-- `raw_events.csv`  
-  Base loaded data, including duplicates and inconsistent formatting.
+* `raw_events`
+* `deduplicated_events`
+* `normalized_events`
+* `feature_table`
+* `summary_table`
 
-- `deduplicated_events.csv`  
-  Exact duplicate rows removed.
+Each step produces a new artifact derived from previous ones.
 
-- `normalized_events.csv`  
-  Cleaned version with standardized categorical values.
+The dependencies between these artifacts are defined in:
 
-- `feature_table.csv`  
-  Per-entity derived features.
+* `artifacts.yaml`
 
-- `summary_table.csv`  
-  A downstream summary built from the normalized data.
+---
 
-## Why this example is useful
+## Artifacts
 
-This small pipeline helps clarify what artifact-driven development means in practice:
+### raw_events
 
-- intermediate products are explicit
-- each artifact has a distinct role
-- decisions such as where deduplication belongs can be discussed against concrete artifacts
-- small context packets can be assembled from named files instead of vague descriptions
+Original input data.
+
+### deduplicated_events
+
+Removes duplicate records from raw input.
+
+### normalized_events
+
+Applies normalization to fields or values.
+
+### feature_table
+
+Derives features from normalized data.
+
+### summary_table
+
+Produces a summary grouped by `event_type`.
+
+---
+
+## Files
+
+* `artifacts.yaml` describes the artifacts and their dependencies.
+* `pipeline.sql` shows one simple way to derive the artifacts from the CSV files.
+* The CSV files are small example artifacts that can be inspected directly.
+
+---
+
+## Running the example
+
+Run the SQL using DuckDB from this directory:
+
+```bash
+cd examples/simple_pipeline
+duckdb :memory: < pipeline.sql
+```
+
+The SQL uses relative paths, so it must be run from this directory.
+
+---
+
+## How to read this example
+
+1. Inspect the CSV files to understand the data at each step.
+2. Review `artifacts.yaml` to see how artifacts depend on each other.
+3. Read `pipeline.sql` to see one possible implementation of those transformations.
+
+---
+
+## Why this example matters
+
+This example demonstrates:
+
+* how intermediate results can be made explicit
+* how dependencies can be represented clearly
+* how documentation and data can align
+
+This is the core idea behind artifact-driven development.
+
+
