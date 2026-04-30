@@ -52,14 +52,23 @@ Produces a summary grouped by `event_type`.
 
 ---
 
-## Files
+g
+## Files in this example
 
-* `artifacts.yaml` describes the artifacts and their dependencies.
-* `pipeline.sql` reads `raw_events.csv` and derives the downstream artifacts as DuckDB views.
+This example uses the same artifact names in two related ways.
+
+`pipeline.sql` derives the artifact sequence as DuckDB views, starting from
+`raw_events.csv`. The downstream CSV files (`deduplicated_events.csv`,
+`normalized_events.csv`, `feature_table.csv`, and `summary_table.csv`) are
+materialized snapshots of those same artifacts. They are included so the
+intermediate outputs can be inspected directly without running the pipeline.
+
+* `raw_events.csv` is the source input for the example pipeline.
+* `pipeline.sql` derives the downstream artifacts as DuckDB views.
 * `deduplicated_events.csv`, `normalized_events.csv`, `feature_table.csv`, and
-  `summary_table.csv` are materialized snapshots of the derived artifacts. They
-  make the expected intermediate outputs easy to inspect directly.
-
+  `summary_table.csv` are materialized snapshots / expected outputs.
+* `artifacts.yaml` catalogs the artifact names, purposes, concrete CSV paths,
+  and dependencies.
 ---
 
 ## Running the example
@@ -91,6 +100,8 @@ Expected row counts:
 2. Review `artifacts.yaml` to see how artifacts depend on each other.
 3. Read `pipeline.sql` to see how the downstream artifacts are derived from `raw_events.csv`.
 
+In this example the artifacts are DuckDB views for simplicity. In a larger pipeline,
+expensive or frequently reused artifacts could be materialized as tables or files.
 ---
 
 ## Why this example matters
