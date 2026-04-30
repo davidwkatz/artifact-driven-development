@@ -55,8 +55,10 @@ Produces a summary grouped by `event_type`.
 ## Files
 
 * `artifacts.yaml` describes the artifacts and their dependencies.
-* `pipeline.sql` loads the materialized CSV artifacts into DuckDB views for inspection.
-* The CSV files are small example artifacts that can be inspected directly.
+* `pipeline.sql` reads `raw_events.csv` and derives the downstream artifacts as DuckDB views.
+* `deduplicated_events.csv`, `normalized_events.csv`, `feature_table.csv`, and
+  `summary_table.csv` are materialized snapshots of the derived artifacts. They
+  make the expected intermediate outputs easy to inspect directly.
 
 ---
 
@@ -87,7 +89,7 @@ Expected row counts:
 
 1. Inspect the CSV files to understand the data at each step.
 2. Review `artifacts.yaml` to see how artifacts depend on each other.
-3. Read `pipeline.sql` to see how the materialized artifacts can be loaded and checked.
+3. Read `pipeline.sql` to see how the downstream artifacts are derived from `raw_events.csv`.
 
 ---
 
