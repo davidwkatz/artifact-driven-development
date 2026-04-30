@@ -18,35 +18,7 @@ This example uses **two related kinds of artifacts**:
    Example:
    - a future `artifacts.yaml` file describing artifact names, types, purposes, and dependencies
 
-These work together. The operational artifacts make the system more explicit, which makes structured description possible. The descriptive artifacts then make the operational artifacts easier for humans and AI to understand and use.
-
-A concise way to say this is:
-
-> Operational artifacts make the system legible; descriptive artifacts make that legibility usable.
-
-## Artifact chain
-
-```text
-source CSV -> observations -> v_observations_clean -> v_feature_counts# Simple Artifact Example (Conceptual Version)
-
-This example shows the basic idea of artifact-driven development using a small chain of named data objects.
-
-It is intentionally **conceptual rather than executable**. The goal is to show how the structure of the workflow becomes clearer when important intermediate objects are treated as artifacts.
-
-## Two kinds of artifacts
-
-This example uses **two related kinds of artifacts**:
-
-1. **Operational artifacts** are part of the working system itself.
-   Examples:
-   - `observations`
-   - `v_observations_clean`
-   - `v_feature_counts`
-
-2. **Descriptive artifacts** are structured descriptions of the system.
-   Example:
-   - a future `artifacts.yaml` file describing artifact names, types, purposes, and dependencies
-   - these can be viewed as structured documentation, but it also serves as a usable abstraction layer for AI and tooling.
+A descriptive artifact can be viewed as structured documentation, but it can also serve as a usable abstraction layer for AI and tooling.
 
 These work together. The operational artifacts make the system more explicit, which makes structured description possible. The descriptive artifacts then make the operational artifacts easier for humans and AI to understand and use.
 
@@ -54,11 +26,46 @@ A concise way to say this is:
 
 > Operational artifacts make the system legible; descriptive artifacts make that legibility usable.
 
-## Artifact chain
+## Artifact chain and dependency graph
+
+For this small example, the data flow can be shown as a simple artifact chain:
 
 ```text
 source CSV -> observations -> v_observations_clean -> v_feature_counts
 ```
+
+This chain is a readable view of the workflow, not a separate source of truth.
+
+The underlying structure is the set of dependency relationships. If the source CSV is treated as an external input rather than an artifact, the operational artifact dependencies are:
+
+```text
+v_observations_clean depends on observations
+v_feature_counts depends on v_observations_clean
+```
+
+Conceptually, the full data flow is still:
+
+```text
+source CSV -> observations -> v_observations_clean -> v_feature_counts
+```
+
+In a larger system, the structure may no longer be a single chain. It may become a graph, with several artifacts depending on the same upstream artifact:
+
+```text
+source CSV -> observations -> v_observations_clean
+                                    -> v_feature_counts
+                                    -> v_feature_counts_by_entity
+```
+
+So the general idea is:
+
+```text
+dependencies = the underlying structure
+artifact chain = a readable path through that structure
+artifact graph = the broader dependency structure when the system branches
+```
+
+In this example, the chain is simple enough to show directly. In a fuller system, the chain or graph would usually be constructed from metadata such as the `depends_on` fields in `artifacts.yaml`.
 
 ## What the objects mean
 
@@ -69,17 +76,17 @@ source CSV -> observations -> v_observations_clean -> v_feature_counts
 
 Each object has a distinct purpose and can be inspected on its own.
 
-## Types of artifacts in this example
+## Objects in this example
 
-| Artifact | Type | Role |
+| Object | Type | Role |
 |---|---|---|
-| `source CSV` | source artifact | original input data |
+| `source CSV` | external input | original input data |
 | `observations` | operational artifact / table | base loaded table |
 | `v_observations_clean` | operational artifact / view | cleaned semantic layer |
 | `v_feature_counts` | operational artifact / view | downstream summary |
 | `artifacts.yaml` | descriptive artifact / metadata file | structured description of artifact names, types, purposes, and dependencies |
 
-The main idea is that the system contains operational artifacts, while a structured metadata file can describe those artifacts in a compact machine-readable form.
+The main idea is that the working system contains operational artifacts, while a structured metadata file can describe those artifacts in a compact machine-readable form.
 
 ## Example SQL
 
@@ -177,6 +184,8 @@ descriptive_artifacts:
     purpose: Structured description of operational artifacts and their dependencies
 ```
 
+The `depends_on` fields are the source of the dependency structure. Human-readable chains and graphs can be constructed from those relationships.
+
 This YAML is not the working data system itself. It is a structured description of that system. Its value depends on the operational artifacts being explicit enough to describe cleanly.
 
 ## Evaluating alternative design choices
@@ -204,11 +213,13 @@ A likely design is:
 source CSV -> observations -> v_observations_clean
                                     -> v_feature_counts
                                     -> v_feature_counts_by_entity
+```
 
 In that design, both summaries depend on the same cleaned semantic layer. That keeps the raw layer separate from the analysis-ready layer and makes the dependency structure easier to understand.
 
 A descriptive artifact could represent the new design like this:
 
+```yaml
 artifacts:
   - name: observations
     artifact_type: operational
@@ -233,22 +244,18 @@ artifacts:
     kind: view
     depends_on: [v_observations_clean]
     purpose: Summary counts by feature and entity
+```
 
 In this way, the descriptive artifact helps turn a coding question into a design question.
 
-Why this matters more in larger systems
+## Why this matters more in larger systems
 
 In a larger system, the value becomes even clearer. An AI assistant does not need to load the whole repository into context. It can focus on a small relevant subgraph of artifacts.
 
-For the task of adding v_feature_counts_by_entity, the most relevant artifacts may be only:
+For the task of adding `v_feature_counts_by_entity`, the most relevant artifacts may be only:
 
-v_feature_counts_by_entity
-v_observations_clean
-observations
+- `v_feature_counts_by_entity`
+- `v_observations_clean`
+- `observations`
 
 The AI can reason productively about this local neighborhood without needing unrelated parts of the system. That makes the artifact graph a useful abstraction for selective attention: it helps humans and AI focus on the few artifacts most relevant to the task at hand.
-
-
-
-
-

@@ -1,0 +1,4 @@
+entity_id,event_count,total_value_num,first_event_time,last_event_time,has_sighting,has_feeding,has_call
+bird_001,3,4,2026-01-01T08:00:00Z,2026-01-01T08:25:00Z,1,1,1
+bird_002,2,6,2026-01-01T08:05:00Z,2026-01-01T08:20:00Z,1,1,0
+bird_003,1,0,2026-01-01T08:15:00Z,2026-01-01T08:15:00Z,0,0,1

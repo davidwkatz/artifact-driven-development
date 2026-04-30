@@ -1,0 +1,35 @@
+artifacts:
+  - name: raw_events
+    artifact_type: operational
+    kind: csv
+    path: raw_events.csv
+    depends_on: []
+    purpose: Original event records used as the starting point for the example pipeline
+
+  - name: deduplicated_events
+    artifact_type: operational
+    kind: csv
+    path: deduplicated_events.csv
+    depends_on: [raw_events]
+    purpose: Event records after duplicate removal
+
+  - name: normalized_events
+    artifact_type: operational
+    kind: csv
+    path: normalized_events.csv
+    depends_on: [deduplicated_events]
+    purpose: Deduplicated events after normalization of fields or values
+
+  - name: feature_table
+    artifact_type: operational
+    kind: csv
+    path: feature_table.csv
+    depends_on: [normalized_events]
+    purpose: Derived feature records created from normalized events
+
+  - name: summary_table
+    artifact_type: operational
+    kind: csv
+    path: summary_table.csv
+    depends_on: [feature_table]
+    purpose: Summary output derived from the feature table

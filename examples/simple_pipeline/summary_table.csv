@@ -1,0 +1,4 @@
+event_type,event_count,total_value_num,distinct_entities
+call,2,0,2
+feeding,2,5,2
+sighting,2,5,2

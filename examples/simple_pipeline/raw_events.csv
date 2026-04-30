@@ -1,0 +1,9 @@
+event_id,entity_id,event_time,event_type,location,value_num
+e001,bird_001,2026-01-01T08:00:00Z,Sighting,North Marsh,3
+e001,bird_001,2026-01-01T08:00:00Z,Sighting,North Marsh,3
+e002,bird_002,2026-01-01T08:05:00Z,sighting ,north marsh,2
+e003,bird_001,2026-01-01T08:10:00Z, Feeding,North Marsh ,1
+e004,bird_003,2026-01-01T08:15:00Z,Call,South Marsh,0
+e004,bird_003,2026-01-01T08:15:00Z,Call,South Marsh,0
+e005,bird_002,2026-01-01T08:20:00Z,feeding,SOUTH MARSH,4
+e006,bird_001,2026-01-01T08:25:00Z,Call,North Marsh,0
