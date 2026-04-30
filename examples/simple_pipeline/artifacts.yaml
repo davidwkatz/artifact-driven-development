@@ -31,5 +31,5 @@ artifacts:
     artifact_type: operational
     kind: csv
     path: summary_table.csv
-    depends_on: [feature_table]
-    purpose: Summary output derived from the feature table
+    depends_on: [normalized_events]
+    purpose: Summary output derived from normalized events, grouped by event_type
