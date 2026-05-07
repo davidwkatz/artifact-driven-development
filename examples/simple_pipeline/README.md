@@ -61,8 +61,6 @@ not a specific representation. In this example, each artifact is shown both as a
 DuckDB view (defined in `pipeline.sql`) and as a CSV snapshot, which are two
 representations of the same underlying artifact.
 
-The named artifacts are represented as DuckDB views in `pipeline.sql` and as CSV snapshots as well, so you can understand both how they are produced and what they contain.
-
 `pipeline.sql` derives the artifact sequence as DuckDB views, starting from
 `raw_events.csv`. The downstream CSV files (`deduplicated_events.csv`,
 `normalized_events.csv`, `feature_table.csv`, and `summary_table.csv`) are
