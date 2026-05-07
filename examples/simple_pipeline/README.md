@@ -116,3 +116,13 @@ This example demonstrates:
 * how documentation and data can align
 
 This is the core idea behind artifact-driven development.
+
+
+## Context selection
+
+LLMs should not see the whole pipeline. They should see only the relevant artifacts.
+
+Examples:
+
+- [Understanding an existing pipeline](context_selection_example.md)
+- [Proposing a new artifact](context_selection_add_artifact.md)
