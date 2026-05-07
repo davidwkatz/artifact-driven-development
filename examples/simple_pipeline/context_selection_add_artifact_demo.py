@@ -126,12 +126,15 @@ def print_context_packet(packet):
 
 
 def main():
-# Hypothetical scenario: assume deduplicated_events does not yet exist
+    artifacts = load_artifacts(Path("artifacts.yaml"))
+
+    # Hypothetical scenario: assume deduplicated_events does not yet exist.
     artifacts = [
         artifact
-        for artifact in load_artifacts(Path("artifacts.yaml"))
+        for artifact in artifacts
         if artifact["name"] != "deduplicated_events"
     ]
+
     selected = select_artifacts(QUESTION, artifacts)
     packet = build_context_packet(QUESTION, artifacts, selected)
 
