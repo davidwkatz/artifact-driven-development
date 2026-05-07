@@ -1,3 +1,5 @@
+# Each artifact is a named dataset. The path points to its materialized CSV snapshot.
+
 artifacts:
   - name: raw_events
     artifact_type: operational

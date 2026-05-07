@@ -52,10 +52,16 @@ Produces a summary grouped by `event_type`.
 
 ---
 
-g
-## Files in this example
 
+## Files in this example
 This example uses the same artifact names in two related ways.
+
+An "artifact" refers to the named dataset itself (for example, `normalized_events`),
+not a specific representation. In this example, each artifact is shown both as a
+DuckDB view (defined in `pipeline.sql`) and as a CSV snapshot, which are two
+representations of the same underlying artifact.
+
+The named artifacts are represented as DuckDB views in `pipeline.sql` and as CSV snapshots as well, so you can understand both how they are produced and what they contain.
 
 `pipeline.sql` derives the artifact sequence as DuckDB views, starting from
 `raw_events.csv`. The downstream CSV files (`deduplicated_events.csv`,
@@ -63,13 +69,11 @@ This example uses the same artifact names in two related ways.
 materialized snapshots of those same artifacts. They are included so the
 intermediate outputs can be inspected directly without running the pipeline.
 
-* `raw_events.csv` is the source input for the example pipeline.
-* `pipeline.sql` derives the downstream artifacts as DuckDB views.
-* `deduplicated_events.csv`, `normalized_events.csv`, `feature_table.csv`, and
-  `summary_table.csv` are materialized snapshots / expected outputs.
-* `artifacts.yaml` catalogs the artifact names, purposes, concrete CSV paths,
-  and dependencies.
----
+* `raw_events.csv` is the source input.
+* `pipeline.sql` derives the artifact sequence as DuckDB views.
+* The downstream CSV files are materialized snapshots / expected outputs.
+* `artifacts.yaml` catalogs names, purposes, paths, and dependencies.
+
 
 ## Running the example
 
@@ -100,8 +104,7 @@ Expected row counts:
 2. Review `artifacts.yaml` to see how artifacts depend on each other.
 3. Read `pipeline.sql` to see how the downstream artifacts are derived from `raw_events.csv`.
 
-In this example the artifacts are DuckDB views for simplicity. In a larger pipeline,
-expensive or frequently reused artifacts could be materialized as tables or files.
+In this example, `pipeline.sql` represents the artifacts as DuckDB views for simplicity.
 ---
 
 ## Why this example matters
