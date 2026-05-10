@@ -14,7 +14,7 @@ Traditional development often leaves important context outside the working syste
 
 Both do better when the important intermediate products are made explicit.
 
-Artifact-driven development treats these intermediate products as first-class objects:
+Artifact-driven development treats these intermediate products as first-class objects; that is:
 
 - they are named
 - they can be inspected
@@ -22,7 +22,7 @@ Artifact-driven development treats these intermediate products as first-class ob
 - they can be connected by dependencies
 - they can help explain what exists and why
 
-This gives both humans and AI systems a better control surface for working on a project.
+Together, these artifacts make the system easier to understand, explain, and change. Instead of treating the project as a mass of code, data, and notes, they give both humans and AI systems concrete objects to inspect, discuss, reuse, and modify.
 
 ## Minimal vocabulary
 
@@ -135,9 +135,9 @@ Start with the simplest examples and concepts first.
 Suggested reading order:
 
 1. this README
-2. `examples/simple_pipeline/README.md` for a concrete, inspectable data example
-3. `examples/simple_artifact_example.md` for the conceptual version of the same idea
-4. `examples/simple_pipeline/artifacts.yaml` for an explicit artifact catalog showing artifact names, types, purposes, and dependencies
+2. [`examples/simple_pipeline/README.md`](examples/simple_pipeline/README.md) for a concrete, inspectable data example
+3. [`examples/simple_artifact_example.md`](examples/simple_artifact_example.md) for the conceptual version of the same idea
+4. [`examples/simple_pipeline/artifacts.yaml`](examples/simple_pipeline/artifacts.yaml) for an explicit artifact catalog showing artifact names, types, purposes, and dependencies
 5. longer essays or experiments in the repo
 
 ## A simple claim
@@ -146,6 +146,6 @@ Artifact-driven development does not require a new programming language or a ful
 
 It starts with a smaller and more practical move:
 
-make important project structure explicit.
+Make important project structure explicit.
 
 That helps humans work with more clarity, and it gives AI systems a better chance of being useful, reliable, and governable.
