@@ -14,6 +14,8 @@ Traditional development often leaves important context outside the working syste
 
 Both do better when the important intermediate products are made explicit.
 
+Artifact-driven development can be understood as an explicit abstraction layer over a project. Instead of asking humans or AI systems to infer structure from scattered files, scripts, notes, and conversations, it gives the project a layer of named artifacts with purposes, dependencies, and relationships.
+
 Artifact-driven development treats these intermediate products as first-class objects; that is:
 
 - they are named
