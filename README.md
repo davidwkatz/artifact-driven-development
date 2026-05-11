@@ -114,6 +114,7 @@ A related recent pattern is the idea of an LLM-maintained wiki or knowledge laye
 The most important idea behind “LLM wiki” is not “let the model write a wiki.” It is “let context accumulate into explicit artifacts.” Raw sources remain the source of truth, while maintained intermediate artifacts capture synthesis, cross-references, logs, and operating conventions. Artifact-driven development generalizes this idea beyond wikis. It treats decisions, dependencies, summaries, indexes, validation records, and workflow state as first-class artifacts too. That broader framing is useful because it preserves the compounding benefits of maintained context while making more room for provenance, human review, role-specific context, and stronger structures such as typed relationships or graphs when a simple markdown layer is no longer enough.
 
 ## What this repo is for
+## What this repo is for
 
 This repo explores artifact-driven development as a practical pattern for AI-assisted software and analytical systems.
 
@@ -128,6 +129,86 @@ Topics may include:
 - project organization for human and AI collaboration
 - implications for autonomous agents and governance
 
+## Using artifacts as AI context
+
+One practical benefit of making artifacts explicit is that they help with context selection.
+
+Context selection means choosing the subset of project material that is relevant to the current question or task. When working with an AI system, it is often unclear which files, notes, examples, schemas, decisions, or intermediate outputs should be included in the prompt.
+
+Artifact-driven development makes this easier by giving the project named objects with purposes and dependencies. Instead of sending “the whole project,” you can select the artifacts most relevant to the task. This both saves context space and often produces better results.
+
+For example, if the question is why duplicate removal happens before feature extraction, the relevant context might include the raw input artifact, the deduplicated artifact, the normalized artifact, and the artifact catalog describing their dependencies.
+
+## What this repo is for
+
+This repo explores artifact-driven development as a practical pattern for AI-assisted software and analytical systems.
+
+The emphasis is on simple, concrete examples rather than heavy formalism.
+
+Topics may include:
+
+- operational and descriptive artifacts
+- explicit dependencies between artifacts
+- semantic views and derived structures
+- design decisions as first-class objects
+- project organization for human and AI collaboration
+- implications for autonomous agents and governance
+
+## Using artifacts as AI context
+
+One practical benefit of making artifacts explicit is that they help with context selection.
+
+Context selection means choosing the subset of project material that is relevant to the current question or task. When working with an AI system, it is often unclear which files, notes, examples, schemas, decisions, or intermediate outputs should be included in the prompt.
+
+Artifact-driven development makes this easier by giving the project named objects with purposes and dependencies. Instead of sending “the whole project,” you can select the artifacts most relevant to the task. This both saves context space and often produces better results.
+
+For example, if the question is why duplicate removal happens before feature extraction, the relevant context might include the raw input artifact, the deduplicated artifact, the normalized artifact, and the artifact catalog describing their dependencies.## What this repo is for
+
+This repo explores artifact-driven development as a practical pattern for AI-assisted software and analytical systems.
+
+The emphasis is on simple, concrete examples rather than heavy formalism.
+
+Topics may include:
+
+- operational and descriptive artifacts
+- explicit dependencies between artifacts
+- semantic views and derived structures
+- design decisions as first-class objects
+- project organization for human and AI collaboration
+- implications for autonomous agents and governance
+
+## Using artifacts as AI context
+
+One practical benefit of making artifacts explicit is that they help with context selection.
+
+Context selection means choosing the subset of project material that is relevant to the current question or task. When working with an AI system, it is often unclear which files, notes, examples, schemas, decisions, or intermediate outputs should be included in the prompt.
+
+Artifact-driven development makes this easier by giving the project named objects with purposes and dependencies. Instead of sending “the whole project,” you can select the artifacts most relevant to the task. This both saves context space and often produces better results.
+
+For example, if the question is why duplicate removal happens before feature extraction, the relevant context might include the raw input artifact, the deduplicated artifact, the normalized artifact, and the artifact catalog describing their dependencies.## What this repo is for
+
+This repo explores artifact-driven development as a practical pattern for AI-assisted software and analytical systems.
+
+The emphasis is on simple, concrete examples rather than heavy formalism.
+
+Topics may include:
+
+- operational and descriptive artifacts
+- explicit dependencies between artifacts
+- semantic views and derived structures
+- design decisions as first-class objects
+- project organization for human and AI collaboration
+- implications for autonomous agents and governance
+
+## Using artifacts as AI context
+
+One practical benefit of making artifacts explicit is that they help with context selection.
+
+Context selection means choosing the subset of project material that is relevant to the current question or task. When working with an AI system, it is often unclear which files, notes, examples, schemas, decisions, or intermediate outputs should be included in the prompt.
+
+Artifact-driven development makes this easier by giving the project named objects with purposes and dependencies. Instead of sending “the whole project,” you can select the artifacts most relevant to the task. This both saves context space and often produces better results.
+
+For example, if the question is why duplicate removal happens before feature extraction, the relevant context might include the raw input artifact, the deduplicated artifact, the normalized artifact, and the artifact catalog describing their dependencies.
 ## Where to start
 
 Start with the simplest examples and concepts first.
