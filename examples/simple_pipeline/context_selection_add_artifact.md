@@ -113,6 +113,21 @@ cd examples/simple_pipeline
 python3 context_selection_add_artifact_demo.py
 ```
 
+The script prints a small context packet. To test the selection, give that packet
+to an LLM along with the question and ask it to answer using only the packet.
+
+For example:
+
+```text
+Use only the context packet below. Do not use prior conversation context or
+assumptions about files not shown.
+
+[PASTE CONTEXT PACKET HERE]
+
+Answer the question using only this packet. If the packet is insufficient, say
+what is missing.
+```
+
 ## General lesson
 
 Artifact-driven development supports not only understanding existing pipelines,
