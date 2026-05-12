@@ -211,6 +211,15 @@ Context selection means choosing the subset of project material that is relevant
 Artifact-driven development makes this easier by giving the project named objects with purposes and dependencies. Instead of sending “the whole project,” you can select the artifacts most relevant to the task. This both saves context space and often produces better results.
 
 For example, if the question is why duplicate removal happens before feature extraction, the relevant context might include the raw input artifact, the deduplicated artifact, the normalized artifact, and the artifact catalog describing their dependencies.
+
+## Limitations: opaque components
+
+Artifact-driven development does not make every part of a system transparent. Some components, especially learned models such as neural networks, may remain internally opaque even when the surrounding project structure is explicit.
+
+In those cases, the method is still useful, but in a different way. The opaque component can be treated as a bounded artifact, while the surrounding evidence is made explicit: training data, evaluation results, behavioral tests, counterexamples, monitoring outputs, interpretability attempts, and decision records.
+
+This does not turn the model’s internal representations into a human-readable DAG. It does, however, make the system’s knowledge about the model more visible, inspectable, and revisable.
+
 ## Where to start
 
 Start with the simplest examples and concepts first.
