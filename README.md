@@ -171,3 +171,6 @@ It starts with a smaller and more practical move:
 Make important project structure explicit.
 
 That helps humans work with more clarity, and it gives AI systems a better chance of being useful, reliable, and governable.
+
+
+Feedback is welcome via GitHub Discussions or Issues.
