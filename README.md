@@ -61,7 +61,7 @@ This repo uses a small practical vocabulary.
 - **Descriptive artifacts** are things that help explain or organize the system. Examples: design decisions, dependency summaries, semantic definitions, structured documentation.
 - **Dependencies** describe how one artifact relies on another.
 - **Artifact-driven development** means making important project structure explicit through artifacts rather than leaving it implicit in code, prompts, or convention.
-- **Semantic Views** are named ways of interpreting lower-level artifacts as a higher-level project concept. For example, a table or SQL view called `valid_observations` might not just be a derived dataset; it might encode the project’s current definition of which observations are usable for analysis.
+- **Semantic views** are named ways of interpreting lower-level artifacts as a higher-level project concept. For example, a table or SQL view called `valid_observations` might not just be a derived dataset; it might encode the project’s current definition of which observations are usable for analysis.
 
 These categories are not rigid. A useful artifact can be partly operational and partly descriptive.
 
