@@ -16,6 +16,20 @@ This makes it possible to ask project-level questions: what explains this concep
 
 The goal is not to replace documentation. The goal is to make documentation, code, decisions, and generated outputs part of a queryable project structure.
 
+## Why artifact-driven development?
+
+Artifact-driven development is motivated by two related goals:
+
+1. **Context selection for leaner models** — instead of sending an entire repository or a large undifferentiated prompt, ADD helps identify the artifacts most relevant to a question or task.
+
+2. **Queryable project structure** — by making artifacts, dependencies, and semantic views explicit, the project becomes easier for humans and agents to interrogate, navigate, and modify.
+
+ADD is not a replacement for ordinary documentation such as README files, design notes, flowcharts, architecture diagrams, or data dictionaries. Those remain useful.
+
+The difference is that ADD asks documentation and project structure to do a more operational job: make the project queryable. A flowchart might explain a pipeline to a human reader; an ADD artifact graph should also identify the artifacts, their paths, purposes, dependencies, downstream consumers, semantic meaning, and relevance to common questions.
+
+See [Talk to Your Project](docs/talk-to-your-project.md) for a fuller explanation.
+
 ## The core idea
 
 Traditional development often leaves important context outside the working system. Humans reconstruct it from memory, code, and notes. AI systems try to reconstruct it from prompts, files, and chat history.
