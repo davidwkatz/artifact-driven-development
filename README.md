@@ -8,31 +8,13 @@ Artifact-driven development is a simple response: treat important intermediate p
 
 An artifact might be a derived table, a semantic view, a workflow state, a dependency summary, a design decision, a task definition, or a compact record of how one output depends on others. The point is not just to save outputs. The point is to make project structure more visible, inspectable, and reusable.
 
-## Why artifact-driven development?
+## Talk to your project
 
-Artifact-driven development makes important project structure explicit through artifacts rather than leaving it implicit in code, prompts, naming conventions, or local habit.
+Artifact-driven development makes a text-based project structured enough to query. Instead of treating a repository as a pile of files, it represents important project elements as artifacts: documents, scripts, generated outputs, decisions, assumptions, validation records, and semantic views.
 
-That supports two practical goals:
+This makes it possible to ask project-level questions: what explains this concept, what depends on this output, what context should an AI assistant read before editing this file, and what may be stale?
 
-- **Better context selection for leaner AI models.** Instead of asking a model to infer the relevant parts of a project from a large pile of files, an artifact catalog can point to the specific objects, dependencies, and decisions that matter for the task.
-- **Queryable project structure.** When intermediate outputs, workflow states, design decisions, and dependencies are represented as named objects, humans and agents can ask better development questions: what depends on this, why does this output exist, what should be inspected before changing it, or which artifact is stale?
-
-This is not separate from documentation, but it is more specific than documentation. ADD treats artifacts as structured, dependency-aware, queryable project objects that can guide development decisions, not only as text to read.
-
-## What this repo is for
-
-This repo explores artifact-driven development as a practical pattern for AI-assisted software and analytical systems.
-
-The emphasis is on simple, concrete examples rather than heavy formalism.
-
-Topics may include:
-
-- operational and descriptive artifacts
-- explicit dependencies between artifacts
-- semantic views and derived structures
-- design decisions as first-class objects
-- project organization for human and AI collaboration
-- implications for autonomous agents and governance
+The goal is not to replace documentation. The goal is to make documentation, code, decisions, and generated outputs part of a queryable project structure.
 
 ## The core idea
 
@@ -60,21 +42,8 @@ This repo uses a small practical vocabulary.
 - **Descriptive artifacts** are things that help explain or organize the system. Examples: design decisions, dependency summaries, semantic definitions, structured documentation.
 - **Dependencies** describe how one artifact relies on another.
 - **Artifact-driven development** means making important project structure explicit through artifacts rather than leaving it implicit in code, prompts, or convention.
-- **Semantic views** are named ways of interpreting lower-level artifacts as a higher-level project concept. For example, a table or SQL view called `valid_observations` might not just be a derived dataset; it might encode the project’s current definition of which observations are usable for analysis.
 
 These categories are not rigid. A useful artifact can be partly operational and partly descriptive.
-
-## Where to start
-
-Start with the simplest examples and concepts first.
-
-Suggested reading order:
-
-1. this README
-2. [`examples/simple_pipeline/README.md`](examples/simple_pipeline/README.md) for a concrete, inspectable data example
-3. [`examples/simple_artifact_example.md`](examples/simple_artifact_example.md) for the conceptual version of the same idea
-4. [`examples/simple_pipeline/artifacts.yaml`](examples/simple_pipeline/artifacts.yaml) for an explicit artifact catalog showing artifact names, types, purposes, and dependencies
-5. longer essays or experiments in the repo
 
 ## A small example
 
@@ -142,13 +111,11 @@ For example, if the question is why duplicate removal happens before feature ext
 
 Artifact-driven development is not just “write better docs.”
 
-It changes what the project treats as part of the working system.
+It broadens the effective system boundary.
 
-Instead of leaving important context outside the system, it brings more of that context into the project’s explicit structure. Decisions, dependencies, workflow state, and operational constraints can all become explicit artifacts.
+Instead of treating important context as something outside the system, it brings more of that context inside the working structure of the project. Decisions, dependencies, workflow state, and operational constraints can all become explicit artifacts.
 
 This matters because explicit artifacts are easier to inspect, revise, test, govern, and reuse than hidden conventions.
-
-ADD overlaps with docs-as-code, README-driven development, ADRs, `AGENTS.md` files, other agent instruction files, and knowledge-base style markdown files. Those practices all make useful context more durable. ADD differs in emphasis: it treats artifacts as structured, dependency-aware, queryable project objects, not only as documentation or instructions.
 
 ## Why this matters for autonomous agents
 
@@ -162,19 +129,54 @@ In that sense, artifact-driven development is relevant not only to productivity,
 
 ## Relation to LLM-maintained knowledge systems
 
-A related pattern is the idea of an LLM-maintained wiki or knowledge layer, such as Andrej Karpathy’s [LLM Wiki gist](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f).
+A related recent pattern is the idea of an LLM-maintained wiki or knowledge layer, such as Andrej Karpathy’s [LLM Wiki gist](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f).
 
-Artifact-driven development generalizes that idea. Instead of treating maintained context only as wiki pages, it treats decisions, dependencies, summaries, indexes, validation records, and workflow state as first-class artifacts too.
+The most important idea behind “LLM wiki” is not “let the model write a wiki.” It is “let context accumulate into explicit artifacts.” Raw sources remain the source of truth, while maintained intermediate artifacts capture synthesis, cross-references, logs, and operating conventions. Artifact-driven development generalizes this idea beyond wikis. It treats decisions, dependencies, summaries, indexes, validation records, and workflow state as first-class artifacts too. That broader framing is useful because it preserves the compounding benefits of maintained context while making more room for provenance, human review, role-specific context, and stronger structures such as typed relationships or graphs when a simple markdown layer is no longer enough.
 
-That broader framing preserves the compounding benefits of maintained context while making more room for provenance, human review, role-specific context, and stronger structures such as typed relationships or graphs when a simple markdown layer is no longer enough.
+## What this repo is for
+
+This repo explores artifact-driven development as a practical pattern for AI-assisted software and analytical systems.
+
+The emphasis is on simple, concrete examples rather than heavy formalism.
+
+Topics may include:
+
+- operational and descriptive artifacts
+- explicit dependencies between artifacts
+- semantic views and derived structures
+- design decisions as first-class objects
+- project organization for human and AI collaboration
+- implications for autonomous agents and governance
+
+## Using artifacts as AI context
+
+One practical benefit of making artifacts explicit is that they help with context selection.
+
+Context selection means choosing the subset of project material that is relevant to the current question or task. When working with an AI system, it is often unclear which files, notes, examples, schemas, decisions, or intermediate outputs should be included in the prompt.
+
+Artifact-driven development makes this easier by giving the project named objects with purposes and dependencies. Instead of sending “the whole project,” you can select the artifacts most relevant to the task. This both saves context space and often produces better results.
+
+For example, if the question is why duplicate removal happens before feature extraction, the relevant context might include the raw input artifact, the deduplicated artifact, the normalized artifact, and the artifact catalog describing their dependencies.
 
 ## Limitations: opaque components
 
-Artifact-driven development does not make every part of a system transparent. Some components remain internally opaque even when the surrounding project structure is explicit. Examples include learned models, embedding systems, ranking systems, external APIs, complex heuristics, hidden platform state, and human judgment.
+Artifact-driven development does not make every part of a system transparent. Some components, especially learned models such as neural networks, may remain internally opaque even when the surrounding project structure is explicit.
 
-In those cases, the method is still useful, but in a different way. The opaque component can be treated as a bounded artifact, while the surrounding evidence is made explicit: inputs, outputs, training or source data, evaluation results, behavioral tests, counterexamples, monitoring outputs, interpretability attempts, assumptions, and decision records.
+In those cases, the method is still useful, but in a different way. The opaque component can be treated as a bounded artifact, while the surrounding evidence is made explicit: training data, evaluation results, behavioral tests, counterexamples, monitoring outputs, interpretability attempts, and decision records.
 
-This does not turn the opaque component’s internal behavior into a human-readable DAG. It does, however, make the system’s knowledge about that component more visible, inspectable, and revisable.
+This does not turn the model’s internal representations into a human-readable DAG. It does, however, make the system’s knowledge about the model more visible, inspectable, and revisable.
+
+## Where to start
+
+Start with the simplest examples and concepts first.
+
+Suggested reading order:
+
+1. this README
+2. [`examples/simple_pipeline/README.md`](examples/simple_pipeline/README.md) for a concrete, inspectable data example
+3. [`examples/simple_artifact_example.md`](examples/simple_artifact_example.md) for the conceptual version of the same idea
+4. [`examples/simple_pipeline/artifacts.yaml`](examples/simple_pipeline/artifacts.yaml) for an explicit artifact catalog showing artifact names, types, purposes, and dependencies
+5. longer essays or experiments in the repo
 
 ## A simple claim
 
@@ -185,6 +187,3 @@ It starts with a smaller and more practical move:
 Make important project structure explicit.
 
 That helps humans work with more clarity, and it gives AI systems a better chance of being useful, reliable, and governable.
-
-
-Feedback is welcome via GitHub Discussions or Issues.
