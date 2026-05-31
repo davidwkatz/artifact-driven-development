@@ -8,6 +8,17 @@ Artifact-driven development is a simple response: treat important intermediate p
 
 An artifact might be a derived table, a semantic view, a workflow state, a dependency summary, a design decision, a task definition, or a compact record of how one output depends on others. The point is not just to save outputs. The point is to make project structure more visible, inspectable, and reusable.
 
+## Why artifact-driven development?
+
+Artifact-driven development makes important project structure explicit through artifacts rather than leaving it implicit in code, prompts, naming conventions, or local habit.
+
+That supports two practical goals:
+
+- **Better context selection for leaner AI models.** Instead of asking a model to infer the relevant parts of a project from a large pile of files, an artifact catalog can point to the specific objects, dependencies, and decisions that matter for the task.
+- **Queryable project structure.** When intermediate outputs, workflow states, design decisions, and dependencies are represented as named objects, humans and agents can ask better development questions: what depends on this, why does this output exist, what should be inspected before changing it, or which artifact is stale?
+
+This is not separate from documentation, but it is more specific than documentation. ADD treats artifacts as structured, dependency-aware, queryable project objects that can guide development decisions, not only as text to read.
+
 ## What this repo is for
 
 This repo explores artifact-driven development as a practical pattern for AI-assisted software and analytical systems.
@@ -22,18 +33,6 @@ Topics may include:
 - design decisions as first-class objects
 - project organization for human and AI collaboration
 - implications for autonomous agents and governance
-
-## Where to start
-
-Start with the simplest examples and concepts first.
-
-Suggested reading order:
-
-1. this README
-2. [`examples/simple_pipeline/README.md`](examples/simple_pipeline/README.md) for a concrete, inspectable data example
-3. [`examples/simple_artifact_example.md`](examples/simple_artifact_example.md) for the conceptual version of the same idea
-4. [`examples/simple_pipeline/artifacts.yaml`](examples/simple_pipeline/artifacts.yaml) for an explicit artifact catalog showing artifact names, types, purposes, and dependencies
-5. longer essays or experiments in the repo
 
 ## The core idea
 
@@ -64,6 +63,18 @@ This repo uses a small practical vocabulary.
 - **Semantic views** are named ways of interpreting lower-level artifacts as a higher-level project concept. For example, a table or SQL view called `valid_observations` might not just be a derived dataset; it might encode the project’s current definition of which observations are usable for analysis.
 
 These categories are not rigid. A useful artifact can be partly operational and partly descriptive.
+
+## Where to start
+
+Start with the simplest examples and concepts first.
+
+Suggested reading order:
+
+1. this README
+2. [`examples/simple_pipeline/README.md`](examples/simple_pipeline/README.md) for a concrete, inspectable data example
+3. [`examples/simple_artifact_example.md`](examples/simple_artifact_example.md) for the conceptual version of the same idea
+4. [`examples/simple_pipeline/artifacts.yaml`](examples/simple_pipeline/artifacts.yaml) for an explicit artifact catalog showing artifact names, types, purposes, and dependencies
+5. longer essays or experiments in the repo
 
 ## A small example
 
@@ -136,6 +147,8 @@ It changes what the project treats as part of the working system.
 Instead of leaving important context outside the system, it brings more of that context into the project’s explicit structure. Decisions, dependencies, workflow state, and operational constraints can all become explicit artifacts.
 
 This matters because explicit artifacts are easier to inspect, revise, test, govern, and reuse than hidden conventions.
+
+ADD overlaps with docs-as-code, README-driven development, ADRs, `AGENTS.md` files, other agent instruction files, and knowledge-base style markdown files. Those practices all make useful context more durable. ADD differs in emphasis: it treats artifacts as structured, dependency-aware, queryable project objects, not only as documentation or instructions.
 
 ## Why this matters for autonomous agents
 
