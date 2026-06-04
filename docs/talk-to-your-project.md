@@ -14,7 +14,7 @@ A project should be able to answer questions such as:
 - What does each artifact mean?
 - Which artifacts depend on which others?
 - Which artifacts are operational, and which are descriptive?
-- Which artifacts are relevant to this question?
+- Which artifacts are relevant to a particular question?
 - What higher-level concept does this lower-level file, table, or view represent?
 
 The goal is not merely to store more documentation. The goal is to create enough explicit structure that an agent, tool, or human can retrieve the right context for the task at hand.
