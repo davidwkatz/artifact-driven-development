@@ -1,0 +1,267 @@
+project:
+  id: churn_example
+  name: ADD Churn Example
+  status: in_progress
+  description: >
+    Demonstrates artifact dependencies, impact analysis, reproducible
+    modeling, project synthesis, and context selection using a customer
+    churn prediction system.
+
+artifacts:
+  - id: business_objective
+    path: artifacts/business_objective.md
+    type: business_definition
+    status: complete
+    version: "1.0"
+    description: >
+      Defines the business decision, prediction horizon, operational
+      constraints, and success criteria.
+    depends_on: []
+    consumed_by:
+      - churn_definition
+      - evaluation_spec
+      - retention_policy
+      - project_wiki
+
+  - id: churn_definition
+    path: artifacts/churn_definition.md
+    type: business_definition
+    status: complete
+    version: "1.0"
+    description: >
+      Defines contractual churn, inactivity churn, the churn date,
+      and the prediction label.
+    depends_on:
+      - business_objective
+    consumed_by:
+      - label_spec
+      - training_dataset
+      - evaluation_report
+      - retention_policy
+      - project_wiki
+
+  - id: open_questions
+    path: artifacts/open_questions.md
+    type: decision_support
+    status: active
+    version: "1.0"
+    description: >
+      Tracks unresolved business, data, modeling, and policy questions.
+    depends_on:
+      - business_objective
+      - churn_definition
+    consumed_by:
+      - project_wiki
+
+  - id: source_data_contract
+    path: artifacts/source_data_contract.md
+    type: data_contract
+    status: planned
+    depends_on:
+      - business_objective
+      - churn_definition
+    consumed_by:
+      - synthetic_source_data
+      - label_spec
+      - training_dataset
+
+  - id: synthetic_source_data
+    path: data/raw/
+    type: dataset
+    status: planned
+    depends_on:
+      - source_data_contract
+    consumed_by:
+      - training_dataset
+
+  - id: label_spec
+    path: artifacts/label_spec.md
+    type: executable_specification
+    status: planned
+    depends_on:
+      - churn_definition
+      - source_data_contract
+    consumed_by:
+      - training_dataset
+      - evaluation_report
+      - project_wiki
+
+  - id: feature_catalog
+    path: artifacts/feature_catalog.md
+    type: feature_definition
+    status: planned
+    depends_on:
+      - business_objective
+      - source_data_contract
+    consumed_by:
+      - training_dataset
+      - model_spec
+      - project_wiki
+
+  - id: training_dataset
+    path: data/derived/training_dataset.parquet
+    type: dataset
+    status: planned
+    depends_on:
+      - synthetic_source_data
+      - label_spec
+      - feature_catalog
+    consumed_by:
+      - trained_model
+      - evaluation_report
+
+  - id: model_spec
+    path: artifacts/model_spec.md
+    type: model_definition
+    status: planned
+    depends_on:
+      - business_objective
+      - feature_catalog
+      - evaluation_spec
+    consumed_by:
+      - trained_model
+      - project_wiki
+
+  - id: trained_model
+    path: models/
+    type: model
+    status: planned
+    depends_on:
+      - training_dataset
+      - model_spec
+    consumed_by:
+      - evaluation_report
+      - segment_analysis
+      - retention_policy
+
+  - id: evaluation_spec
+    path: artifacts/evaluation_spec.md
+    type: evaluation_definition
+    status: planned
+    depends_on:
+      - business_objective
+      - churn_definition
+    consumed_by:
+      - model_spec
+      - evaluation_report
+      - segment_analysis
+
+  - id: evaluation_report
+    path: reports/evaluation_report.md
+    type: report
+    status: planned
+    depends_on:
+      - churn_definition
+      - label_spec
+      - training_dataset
+      - trained_model
+      - evaluation_spec
+    consumed_by:
+      - retention_policy
+      - project_wiki
+
+  - id: segment_analysis
+    path: reports/segment_analysis.md
+    type: report
+    status: planned
+    depends_on:
+      - trained_model
+      - evaluation_spec
+      - evaluation_report
+    consumed_by:
+      - retention_policy
+      - project_wiki
+
+  - id: retention_policy
+    path: artifacts/retention_policy.md
+    type: policy
+    status: planned
+    depends_on:
+      - business_objective
+      - churn_definition
+      - evaluation_report
+      - segment_analysis
+    consumed_by:
+      - monitoring_spec
+      - project_wiki
+
+  - id: monitoring_spec
+    path: artifacts/monitoring_spec.md
+    type: monitoring_definition
+    status: planned
+    depends_on:
+      - business_objective
+      - churn_definition
+      - evaluation_spec
+      - retention_policy
+    consumed_by:
+      - project_wiki
+
+  - id: project_wiki
+    path: wiki/
+    type: knowledge_base
+    status: planned
+    depends_on:
+      - business_objective
+      - churn_definition
+      - open_questions
+      - label_spec
+      - feature_catalog
+      - model_spec
+      - evaluation_report
+      - segment_analysis
+      - retention_policy
+      - monitoring_spec
+    consumed_by:
+      - context_selector
+
+  - id: context_selector
+    path: src/context_selector.py
+    type: algorithm
+    status: planned
+    depends_on:
+      - project_wiki
+    consumed_by:
+      - change_impact_report
+
+  - id: change_impact_report
+    path: reports/change_impact_report.md
+    type: report
+    status: planned
+    depends_on:
+      - context_selector
+    consumed_by: []
+
+reading_paths:
+  newcomer:
+    artifacts:
+      - business_objective
+      - churn_definition
+      - open_questions
+
+  business_reader:
+    artifacts:
+      - business_objective
+      - churn_definition
+      - retention_policy
+      - evaluation_report
+
+  data_scientist:
+    artifacts:
+      - source_data_contract
+      - label_spec
+      - feature_catalog
+      - training_dataset
+      - model_spec
+      - evaluation_spec
+      - evaluation_report
+      - segment_analysis
+
+  add_architecture:
+    title: Understand the ADD architecture
+    artifacts:
+      - business_objective
+      - churn_definition
+      - project_wiki
+      - context_selector
+      - change_impact_report
