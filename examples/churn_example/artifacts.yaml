@@ -32,7 +32,6 @@ artifacts:
     consumed_by:
       - source_data_contract
       - synthetic_data_spec
-
   - id: open_questions
     path: artifacts/open_questions.md
     type: decision_support
@@ -75,7 +74,8 @@ artifacts:
   - id: synthetic_data_config
     path: config/synthetic_data.yaml
     type: configuration
-    status: planned
+    status: complete
+    version: "1.0"
     description: >
       Machine-readable parameters for the synthetic data generator.
     depends_on:

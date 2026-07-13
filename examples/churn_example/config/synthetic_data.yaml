@@ -1,0 +1,28 @@
+random_seed: 42
+
+num_customers: 5000
+
+months_of_history: 18
+
+target_churn_rate: 0.20
+
+segment_mix:
+  small: 0.60
+  mid_market: 0.30
+  enterprise: 0.10
+
+regions:
+  - north_america
+  - europe
+  - asia_pacific
+  - latin_america
+
+plans:
+  basic:
+    monthly_price: 25
+
+  professional:
+    monthly_price: 75
+
+  enterprise:
+    monthly_price: 250

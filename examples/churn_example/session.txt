@@ -1,0 +1,10 @@
+Script started on 2026-07-12 17:44:26-07:00 [TERM="dumb" TTY="/dev/pts/4" COLUMNS="78" LINES="31"]
+[WSL] dkatz@dklaptop1 ~/dev/artifact-driven-development/examples/churn_example $ python3 validate_registry.py
+Project: ADD Churn Example
+Registry validation failed:
+- source_data_contract: status is 'complete', but path is missing: artifacts/source_data_contract.md
+- churn_definition: unknown consumer 'label_spec'.
+[WSL] dkatz@dklaptop1 ~/dev/artifact-driven-development/examples/churn_example $ exit
+exit
+
+Script done on 2026-07-12 17:44:38-07:00 [COMMAND_EXIT_CODE="1"]
