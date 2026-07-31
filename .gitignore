@@ -2,3 +2,7 @@
 *~
 
 private/
+# Emacs temporary files
+*~
+\#*\#
+.#*
