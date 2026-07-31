@@ -1,28 +1,27 @@
 random_seed: 42
-
 num_customers: 5000
+start_date: 2025-01-01
+end_date: 2026-06-30
 
-months_of_history: 18
-
-target_churn_rate: 0.20
-
-segment_mix:
-  small: 0.60
-  mid_market: 0.30
-  enterprise: 0.10
+segments:
+  small:
+    weight: 0.60
+    churn_rate: 0.25
+    plan: basic
+    monthly_price: 25
+  mid_market:
+    weight: 0.30
+    churn_rate: 0.17
+    plan: professional
+    monthly_price: 75
+  enterprise:
+    weight: 0.10
+    churn_rate: 0.09
+    plan: enterprise
+    monthly_price: 250
 
 regions:
   - north_america
   - europe
   - asia_pacific
   - latin_america
-
-plans:
-  basic:
-    monthly_price: 25
-
-  professional:
-    monthly_price: 75
-
-  enterprise:
-    monthly_price: 250
